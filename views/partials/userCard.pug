@@ -1,0 +1,17 @@
+.ui.card
+  .image
+    if user.profile.picture
+      img(src='/user_avatar/'+user.profile.picture)
+    else
+      img(src=user.gravatar(60))
+  .content
+    a.header(href='/me')= user.profile.name || user.email || user.id
+    .meta="@"+user.username
+    
+
+
+script.
+  Edit button
+  $('.ui.editprofile.button').on('click', function() {
+      window.location.href = '/account';
+  });

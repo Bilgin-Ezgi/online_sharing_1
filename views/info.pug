@@ -1,0 +1,52 @@
+extends ui_layout
+
+block content
+  .ui.text.container(style="margin-top: 4em; margin-bottom: 4em;")
+    h1(style="text-align: center;font-size: 20px") 
+     
+    h3 On the next page, you can start posting. You'll also see posts made by other users. 
+    
+    
+    h3 For your post, think about a memorable event that you experienced with your friends during the day.
+
+
+    h3 At the top of the next page, you'll see a textbox. Make a post by clicking on the textbox. 
+    
+    h3(style="text-decoration: underline;").
+     Other users will be able to view and like your posts. The average number of likes is 27 on <em>Me & My Friends</em>
+
+    h3 After you share a post, click on the Notifications tab to see how many likes your post has received.
+
+
+   
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    .ui.big.green.labeled.icon.button.interest
+        i.rocket.icon
+        |   Let's start posting!
+
+    script.
+        $('.ui.big.green.labeled.icon.button.interest').on('click', function() {
+            $(this).addClass('loading disabled');
+            $.post("/account/consent", {
+                    _csrf: $('meta[name="csrf-token"]').attr('content')
+                }).done(function(json) {
+                    if (json["result"] === "success") {
+                        window.location.href = '/'
+                    }
+                });
+        });

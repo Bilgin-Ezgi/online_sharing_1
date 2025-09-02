@@ -1,0 +1,31 @@
+extends ../ui_layout
+
+block content
+  .computer.only.tablet.only.eight.wide.column
+    img.ui.fluid.image(src=process.env.SITE_PICTURE, style="height: 500px; object-fit: cover;")
+  .eight.wide.computer.eight.wide.tablet.sixteen.wide.mobile.column
+    .ui.card.fluid(style="padding: 20px; margin-top: 90px;font-size: 17px")
+      h2.ui.header Sign Up
+      form.ui.form(id='signup-form', action=(process.env.POST_SURVEY_WITH_QUALTRICS ? `/signup?r_id=${r_id}` : '/signup'), method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .field
+          label(for='username',style= "font-size: 17px") SONA ID (5-digit)
+          input(type='text', name='username', id='username', placeholder='SONA ID', autofocus, required)
+        .field
+          label(for='email',style= "font-size: 17px") Email (will not be publicly displayed)
+          input(type='email', name='email', id='email', placeholder='Email', required)
+        .field
+          label(for='password',style= "font-size: 17px") Password
+          input(type='password', name='password', id='password', placeholder='Password', minlength="4", required)
+        .field
+          label(for='confirmPassword',style= "font-size: 17px") Confirm Password 
+          input(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', minlength="4", required)
+          span(style="color: green; visibility:hidden; display: inline-block; font-size: 17px")#passwordsMatch  
+            i.icon.check 
+            | Passwords Match
+        
+              
+        button.ui.large.button(type='submit') Save
+
+block scripts
+  script(src='/public/js/profile.js')

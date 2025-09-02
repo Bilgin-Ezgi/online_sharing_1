@@ -1,0 +1,39 @@
+extends ../ui_layout
+
+block content
+  if endSurveyLink
+    .sixteen.wide.column
+      .ui.info.message
+        .content
+          .header
+            | You did this!🎉🎉
+          p Now we want to ask you some additional questions. Please click
+              a(href=endSurveyLink, style="text-decoration: underline; color: red;")  HERE
+              | .
+  .computer.only.tablet.only.eight.wide.column
+    img.ui.fluid.image(src=process.env.SITE_PICTURE,style="height: 500px; object-fit: cover;")
+
+  .eight.wide.computer.eight.wide.tablet.sixteen.wide.mobile.column
+    .ui.card.fluid(style="padding: 20px; margin-top: 90px; font-size: 18px")
+      h2.ui.header Sign in
+      form.ui.form(action='/login', method='POST')
+        input(type='hidden', name='_csrf', value=_csrf)
+        .field
+          label(for='email', style= "font-size: 18px") Email
+          input(type='email', name='email', id='email', placeholder='Email', autofocus, required)
+        .field
+          label(for='password',style= "font-size: 18px") Password
+          input(type='password', name='password', id='password', placeholder='Password', required)
+        button.ui.large.button.blue(type='submit', style= "font-size: 18px") Log In
+        a(href='/forgot') &nbsp;&nbsp;Forgot your password?
+      .ui.horizontal.divider
+        | Or
+      .center.aligned.column
+        .ui.big.green.labeled.icon.button.signup
+          i.signup.icon
+          |   Create Account
+
+  script.
+    $('.ui.big.green.labeled.icon.button.signup').on('click', function() {
+      window.location.href = `/signup${window.location.search}`;
+    });

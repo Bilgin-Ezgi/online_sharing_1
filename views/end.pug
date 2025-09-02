@@ -1,0 +1,19 @@
+extends ui_layout
+
+block content
+  .ui.text.container(style="margin-top: 4em; margin-bottom: 4em; font-size: 18px")
+    
+    
+    p If you've created a post and check your notifications, you can end your session.
+    p Otherwise, please go back and complete them. 
+    
+
+    
+      .ui.big.green.labeled.icon.button.info
+          i.rocket.icon
+          |   End my session
+  
+  script.
+    $('.ui.big.green.labeled.icon.button.info').on('click', function() {
+        window.location.href='/logout'; 
+      });

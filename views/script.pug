@@ -1,0 +1,79 @@
+extends ui_layout
+
+block styles 
+  link(type='text/css', rel='stylesheet', href='/public/css/script.css')
+
+block content
+  .computer.only.tablet.only.four.wide.column 
+    include ./partials/userCard
+  #loading.eight.wide.computer.ten.wide.tablet.sixteen.wide.mobile.column
+    img.ui.centered.small.image(src='/public/heart.svg')
+  #content.eight.wide.computer.ten.wide.tablet.sixteen.wide.mobile.column.hidden
+    //- Input for creating new post at top of feed
+    #newpost.ui.fluid.left.labeled.right.icon.input
+      .ui.label
+        if user.profile.picture
+          img.ui.avatar.image(src='/user_avatar/'+user.profile.picture)
+        else
+          img.ui.avatar.image(src=user.gravatar(60))
+      input(readonly, type='text', placeholder='Click to create a new post', style="font-size: 18.5px; height: 55px;font-weight: bold; color: #333333; background-color: #ffffff; border: 1px solid #dddddd; padding: 12px; width: 100%")
+    //- Input for creating new post at top of feed
+    //- #secondpost.ui.fluid.left.labeled.right.icon.input
+    //-   .ui.label
+    //-    if user.profile.picture
+    //-       img.ui.avatar.image(src='/user_avatar/'+user.profile.picture)
+    //-    else
+    //-       img.ui.avatar.image(src=user.gravatar(60))
+    //-   input(readonly, type='text', placeholder='Click to create a new post about a challenging event', style="font-size: 18.5px; height: 55px;font-weight: bold; color: #333333; background-color: #ffffff; border: 1px solid #dddddd; padding: 12px; width: 100%")
+    //- Input for creating new post at top of feed
+    #thirdpost.ui.fluid.left.labeled.right.icon.input
+      .ui.label
+      textarea(readonly, placeholder="After you've created a post, check your notifications. Later click on your profile icon in the top right and select 'End My Session' from the dropdown menu" style="font-size: 17px; font-weight: bold; color:#000000; background-color: #ffffff; border: 1px solid #dddddd;height: 80px; padding: 12px;width: 100%; text-align: center; display: flex; align-items: center; justify-content: center;")
+
+    each val in script
+      if val.relativeTime 
+        //- This is a User made post
+        include partials/userPost
+      else 
+        //- This is an Actor post
+        include partials/actorPost
+    .ui.fluid.card
+      .content
+        .description
+        |  End of Posts for the last 24 hours.
+  .computer.only.tablet.only.four.wide.column
+    
+  .ui.tiny.post.modal#newpost-modal
+    i.close.icon
+    .header.modal-header
+     | Make a post about a memorable event that you experienced with your friends during the day.
+     p Share what happened in as much detail as you can. Describe the event in 8 to 10 sentences.  
+    .scrolling.content
+      form#postform.ui.feed.form(action='/post/new', method='POST', enctype='multipart/form-data')
+        input(type='hidden', name='_csrf', value=_csrf)
+        input(type='hidden', name='label', value="joyous")
+        .field
+          textarea(rows='8', placeholder='Type here', name='body')
+    .actions
+      input.ui.green.button(type='submit', form='postform', value='Share')
+  
+  //- .ui.tiny.post.modal#secondpost-modal
+  //-   i.close.icon
+  //-   .header.modal-header
+  //-    | Make a post about a challenging event that you recently experienced with your friends. 
+  //-    p Share what happened in as much detail as you can. Describe the event in 8 to 10 sentences. 
+  //-   .scrolling.content
+  //-     form#postform2.ui.feed.form(action='/post/new', method='POST', enctype='multipart/form-data')
+  //-       input(type='hidden', name='_csrf', value=_csrf)
+  //-       input(type='hidden', name='label', value="challenging")
+  //-       .field
+  //-         textarea(rows='8', placeholder='Type here', name='body')
+  //-   .actions
+  //-     input.ui.green.button(type='submit', form='postform2', value='Share')
+
+        
+block scripts
+  script().
+    let numComments = !{JSON.stringify(user.numComments)};
+  script(src='/public/js/script.js')
+  script(src='/public/js/postFunctionalities.js')

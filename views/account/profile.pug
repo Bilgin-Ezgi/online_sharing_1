@@ -1,0 +1,32 @@
+extends ../ui_layout
+
+block content
+  .sixteen.wide.column(style="margin-top: 2em; margin-bottom: 2em;")
+    h2(style="text-align: center,font-size: 18px") Profile Information
+
+    form.ui.large.form(action='/account/profile', method='POST', enctype='multipart/form-data', id='profile')
+      input(type='hidden', name='_csrf', value=_csrf)
+      .field
+        label(for='email',style= "font-size: 18px") Email
+        input.form-control(type='email', name='email', id='email', value=user.email)
+      .field
+        label(for='name',style= "font-size: 18px") Username
+        input.form-control(type='text', name='name', id='name', value=user.profile.name)
+      button.ui.large.button(type='submit',style= "font-size: 18px") Update Profile
+    .ui.divider
+    h3.ui.header(style="margin-top: 2em; font-size: 18px") Change Password
+    form.ui.large.form(action='/account/password', method='POST', id='password')
+      input(type='hidden', name='_csrf', value=_csrf)
+      .field
+        label(for='password', style= "font-size: 18px") New Password
+        input.form-control(type='password', name='password', id='password', placeholder=' New Password', minlength="4", required)
+      .field
+        label(for='confirmPassword', style= "font-size: 18px") Confirm Password 
+        input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password', minlength="4", required)
+        span(style="color: green; visibility:hidden")#passwordsMatch  
+            i.icon.check 
+            | Passwords Match
+      button.ui.large.button(type='submit',style= "font-size: 18px") Change Password
+
+block scripts
+  script(src='/public/js/profile.js')

@@ -45,12 +45,12 @@
                 .metadata
                   span.date=(user.createdAt.getTime() + comment.time)
                   .rating
-                    i.heart.icon(class=comment.liked ? "red" : null)
-                    span.num=comment.likes+(comment.liked ? 1 : 0)
-                    |  Likes
+                    //- i.heart.icon(class=comment.liked ? "red" : null)
+                     span.num=comment.likes+(comment.liked ? 1 : 0)
+                     |  Likes
                 .text=comment.body
                 .actions
-                  a.like.comment(class=comment.liked ? "red" : null ) !{comment.liked ? "Unlike" : "Like"}
+                 //- a.like.comment(class=comment.liked ? "red" : null ) !{comment.liked ? "Unlike" : "Like"}
           //- Else this is a normal comment from the script
           else
             .comment(commentID=comment.id)
@@ -61,12 +61,12 @@
                 .metadata
                   span.date=(user.createdAt.getTime() + comment.time)
                   .rating
-                    i.heart.icon(class=comment.liked ? "red" : null)
+                   //- i.heart.icon(class=comment.liked ? "red" : null)
                     span.num=comment.likes+(comment.liked ? 1 : 0)
                     |  Likes
                 .text=comment.body
                 .actions
-                  a.like.comment(class=comment.liked ? "red" : null ) !{comment.liked ? "Unlike" : "Like"}
+                 //- a.like.comment(class=comment.liked ? "red" : null ) !{comment.liked ? "Unlike" : "Like"}
                   //-a.flag.comment Flag
   .extra.content
     .ui.fluid.left.labeled.right.icon.input

@@ -28,7 +28,7 @@ block content
     //- Input for creating new post at top of feed
     #thirdpost.ui.fluid.left.labeled.right.icon.input
       .ui.label
-      textarea(readonly, placeholder="After you've created a post, check your notifications. Later click on your profile icon in the top right and select 'End My Session' from the dropdown menu" style="font-size: 17px; font-weight: bold; color:#000000; background-color: #ffffff; border: 1px solid #dddddd;height: 80px; padding: 12px;width: 100%; text-align: center; display: flex; align-items: center; justify-content: center;")
+      textarea(readonly, placeholder="Once you're done posting, take a moment to explore what others posted and feel free to leave comments. Notifications on your posts usually appear within 1–2 minutes. When you’ve finished checking notifications, click your profile icon in the top right and select 'End My Session'" style="font-size: 17px; font-weight: bold; color:#000000; background-color: #ffffff; border: 1px solid #dddddd;height: 125px; padding: 12px;width: 100%; text-align: center; display: flex; align-items: center; justify-content: center;")
 
     each val in script
       if val.relativeTime 
@@ -46,8 +46,8 @@ block content
   .ui.tiny.post.modal#newpost-modal
     i.close.icon
     .header.modal-header
-     | Make a post about a memorable event that you experienced with your friends during the day.
-     p Share what happened in as much detail as you can. Describe the event in 8 to 10 sentences.  
+     | Make a post about a memorable event that you experienced today.
+     p Share what happened in as much detail as you’d like. 
     .scrolling.content
       form#postform.ui.feed.form(action='/post/new', method='POST', enctype='multipart/form-data')
         input(type='hidden', name='_csrf', value=_csrf)

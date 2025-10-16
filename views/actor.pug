@@ -19,7 +19,7 @@ block content
         .ui.basic.primary.follow.button(style=" margin-top: 15px", actor_un = actor.username)
           if user.followed.includes(actor.username)
             i.check.icon 
-            | Following
+            | Requested
           else 
             | Follow
       .two.ui.bottom.attached.icon.buttons
@@ -35,7 +35,7 @@ block content
       .ui.fluid.card
         .content
           .description
-          |  No posts to show.
+          | This account is private. Follow to see their posts.
     each val in script
       include ./partials/actorPost
       

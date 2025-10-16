@@ -2,7 +2,7 @@
   .ui.borderless.fixed.menu
     .ui.container
       a.item(href= user===undefined ? (process.env.POST_SURVEY_WITH_QUALTRICS ? `/?r_id=${r_id}`: '/' ): (user.consent ? "/": "#"))
-        img.ui.tiny.image(src=process.env.SITE_LOGO, id='logo', style="width: 90px; height: auto;")
+        img.ui.tiny.image(src=process.env.SITE_LOGO, id='logo')
       .right.menu
         if !user
           a.item(href=process.env.POST_SURVEY_WITH_QUALTRICS ? `/login?r_id=${r_id}`: '/login') Log In
